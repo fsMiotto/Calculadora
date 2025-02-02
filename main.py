@@ -1,9 +1,8 @@
 import sys
-
 from components.main_window import MainWindow
 from PySide6.QtWidgets import QApplication 
 from components.constants import WINDOW_ICON_PATH
-from components.components import Display, Info, Button
+from components.components import Display, Info, Button, ButtonsGrid
 from styles import setupTheme
 
 
@@ -22,19 +21,25 @@ if __name__ == '__main__':
 
     #info
     info = Info('texto aqui')
-    window.addToVLayout(info)
+    window.addWidgetToVLayout(info)
 
     # Display
     display = Display()
     display.setPlaceholderText('Digite algo')   
-    window.addToVLayout(display)
+    window.addWidgetToVLayout(display)
+
+    #Grid
+    buttons_grid = ButtonsGrid(display, info, window)
+    window.v_layout.addLayout(buttons_grid) 
 
     #info
-    button = Button('Texto do bottao')
-    window.addToVLayout(button)
+    #Botao
+    #buttons_grid.addWidget(Button('1'), 0, 0)
+    #buttons_grid.addWidget(Button('2'), 0, 1)
+    #buttons_grid.addWidget(Button('3'), 0, 2)
 
-    
-
+    #buttons_grid.addWidget(Button('4'), 1, 0)
+    #buttons_grid.addWidget(Button('0'), 2, 1, 1, 1)
 
     window.show()
     app.exec()
